@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: envirohealth-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-envirohealth}
+      POSTGRES_USER: ${DB_USER:-envirohealth}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-envirohealth}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-envirohealth} -d ${DB_NAME:-envirohealth}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: envirohealth-app
+    profiles:
+      - app
+    environment:
+      DB_HOST: postgres
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME:-envirohealth}
+      DB_USER: ${DB_USER:-envirohealth}
+      DB_PASSWORD: ${DB_PASSWORD:-envirohealth}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./data/raw:/app/data/raw:ro
+      - ./outputs:/app/outputs
+
+volumes:
+  postgres_data:

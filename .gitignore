@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Local environment
+.env
+.DS_Store
+postgres_data/
+
+# Data policy: keep raw/source data local.
+data/raw/
+
+# Generated outputs can be reproduced.
+outputs/
+data/processed/
