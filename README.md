@@ -1,8 +1,18 @@
 # Envirohealth Pipeline
 
-[![CI](https://github.com/raymondblahajr/Envirohealth-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/raymondblahajr/Envirohealth-pipeline/actions/workflows/ci.yml)
+[![CI](https://github.com/raymondblaha/Envirohealth-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/raymondblaha/Envirohealth-pipeline/actions/workflows/ci.yml)
 
 Envirohealth Pipeline is a portfolio data engineering and applied analytics project that integrates EPA air quality data with CDC PLACES county health indicators. It builds a reproducible PostgreSQL pipeline from raw public datasets into validated analytical views, then uses those views for statistical analysis and predictive machine learning benchmarks.
+
+## Portfolio Signal
+
+This project is designed to demonstrate applied data science and analytics engineering skills on public environmental health data:
+
+- Python package structure for ETL, profiling, validation, statistical analysis, and ML benchmarking
+- PostgreSQL `raw -> core -> analytics` architecture with constraints, indexes, analytical views, and validation SQL
+- Idempotent CSV ingestion with source-row lineage and reproducible run summaries
+- Docker Compose for local PostgreSQL and GitHub Actions CI for linting, tests, database integration tests, and Docker image build
+- Clear statistical framing that separates ecological association, prediction, and causal limitations
 
 ## Problem
 
